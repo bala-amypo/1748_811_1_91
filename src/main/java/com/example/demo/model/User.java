@@ -24,6 +24,26 @@ public class User{
 
     }
 
-    
+    public Long getId()
+    {
+        return id;
+    }
+    public void setFullName(Stirng fullname)
+    {
+        this.fullname = fullname;
+    }
+    public void setEmail(Stirng email)
+    {
+        this.email = email;
+    }
+    public void setPassword(Stirng password)
+    {
+        this.password = password;
+    }
+    public void setPassword(Stirng password)
+    {
+        this.password = password;
+    }
+
 
 }
