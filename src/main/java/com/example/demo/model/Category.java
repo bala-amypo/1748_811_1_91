@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-
+import java.time.LocalDateTime;
 @Entity
 public class Category{
     @Id
@@ -10,6 +10,7 @@ public class Category{
     private String categoryName;
     private String description;
     private String defaultUrgency;
+    private LocalDateTime createdAt;
 
     public void setCategoryName(String categoryName)
     {
