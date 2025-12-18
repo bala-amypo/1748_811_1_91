@@ -13,6 +13,9 @@ public class User{
     private String role;
     private LocalDateTime createdAt;
 
+
+    protected void 
+
     public User(String fullname , String email , String password , String role )
     {
         this.fullname = fullname;
@@ -40,9 +43,26 @@ public class User{
     {
         this.password = password;
     }
-    public void setPassword(Stirng password)
+    public void setRole(Stirng role)
     {
-        this.password = password;
+        this.role = role;
+    }
+
+    public String getFullName()
+    {
+        return fullname;
+    }
+    public String getPassword()
+    {
+        return password;
+    }
+    public String getEmail()
+    {
+        return email;
+    }
+    public String getRole()
+    {
+        return role;
     }
 
 
