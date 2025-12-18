@@ -12,4 +12,18 @@ public class User{
     private String password;
     private String role;
     private LocalDateTime createdAt;
+
+    public User(String fullname , String email , String password , String role )
+    {
+        this.fullname = fullname;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+    public User(){
+
+    }
+
+    
+
 }
