@@ -12,7 +12,9 @@ public class Category{
     private String defaultUrgency;
     private LocalDateTime createdAt;
 
-    public Category(String categoryName , String description , String defaultUrgency , LocalDateTime createdAt){
+    public Category(){}
+
+    public Category(String categoryName , String description , String defaultUrgency){
         this.categoryName = categoryName;
         this.description = description;
         this.defaultUrgency = defaultUrgency;
