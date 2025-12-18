@@ -12,6 +12,14 @@ public class Category{
     private String defaultUrgency;
     private LocalDateTime createdAt;
 
+    public Category(String categoryName , String description , String defaultUrgency , LocalDateTime createdAt){
+        this.categoryName = categoryName;
+        this.description = description;
+        this.defaultUrgency = defaultUrgency;
+        this.createdAt = LocalDateTime.now();
+    }
+
+
     public void setCategoryName(String categoryName)
     {
         this.categoryName = categoryName;
@@ -36,5 +44,9 @@ public class Category{
     public String getDefaultUrgency()
     {
         return defaultUrgency;
+    }
+    public LocalDateTime getCreatedAt()
+    {
+        return createdAt;
     }
 }
