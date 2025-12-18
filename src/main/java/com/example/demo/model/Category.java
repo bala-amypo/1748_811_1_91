@@ -11,5 +11,29 @@ public class Category{
     private String description;
     private String defaultUrgency;
 
-    public void setCate
+    public void setCategoryName(String categoryName)
+    {
+        this.categoryName = categoryName;
+    }
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+    public void setDefaultUrgency(String defaultUrgency)
+    {
+        this.defaultUrgency = defaultUrgency;
+    }
+
+    public String getCategoryName()
+    {
+        rerturn categoryName;
+    }
+    public String getDescription()
+    {
+        rerturn description;
+    }
+    public String getDefaultUrgency()
+    {
+        rerturn defaultUrgency;
+    }
 }
