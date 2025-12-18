@@ -21,17 +21,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<StudentEntity> getAllStudents() {
+    public List<Category> getAllCategory() {
         return repository.findAll();
     }
 
     @Override
-    public StudentEntity getStudentById(Long id) {
+    public StudentEntity getCategoryById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
-    @Override
-    public void deleteStudentById(Long id) {
-        repository.deleteById(id);
-    }
 }

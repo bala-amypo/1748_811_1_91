@@ -9,7 +9,7 @@ public interface CategoryService {
 
     List<Category> getAllCategory();
 
-    StudentEntity getStudentById(Long id);
+    StudentEntity getCategoryById(Long id);
 
     
 }
