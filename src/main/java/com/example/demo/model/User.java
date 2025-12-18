@@ -15,7 +15,7 @@ public class User{
 
 
     protected void onCreate(){
-        this.createdAt = LocalDateTime.now();
+        //this.createdAt = LocalDateTime.now();
         if(this.role == null)
         {
             this.role = "USER";

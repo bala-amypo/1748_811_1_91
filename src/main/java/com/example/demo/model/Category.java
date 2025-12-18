@@ -26,14 +26,14 @@ public class Category{
 
     public String getCategoryName()
     {
-        rerturn categoryName;
+        return categoryName;
     }
     public String getDescription()
     {
-        rerturn description;
+        return description;
     }
     public String getDefaultUrgency()
     {
-        rerturn defaultUrgency;
+        return defaultUrgency;
     }
 }
