@@ -14,7 +14,13 @@ public class User{
     private LocalDateTime createdAt;
 
 
-    protected void 
+    protected void onCreate(){
+        this.createdAt = LocalDateTime.now();
+        if(this.role == null)
+        {
+            this.role = "USER";
+        }
+    }
 
     public User(String fullname , String email , String password , String role )
     {
@@ -63,6 +69,10 @@ public class User{
     public String getRole()
     {
         return role;
+    }
+    public LocalDateTime getCreatedAt()
+    {
+        return createdAt;
     }
 
 
