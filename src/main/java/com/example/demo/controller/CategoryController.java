@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.entity.Category;
+import com.example.demo.model.Category;
 import com.example.demo.service.CategoryService;
 
 @RestController
@@ -26,7 +26,7 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public StudentEntity getCategoryById(@PathVariable Long id) {
+    public Category getCategoryById(@PathVariable Long id) {
         return service.getCategoryById(id);
     }
 }

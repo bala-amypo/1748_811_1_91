@@ -37,19 +37,19 @@ public class User{
     {
         return id;
     }
-    public void setFullName(Stirng fullname)
+    public void setFullName(String fullname)
     {
         this.fullname = fullname;
     }
-    public void setEmail(Stirng email)
+    public void setEmail(String email)
     {
         this.email = email;
     }
-    public void setPassword(Stirng password)
+    public void setPassword(String password)
     {
         this.password = password;
     }
-    public void setRole(Stirng role)
+    public void setRole(String role)
     {
         this.role = role;
     }

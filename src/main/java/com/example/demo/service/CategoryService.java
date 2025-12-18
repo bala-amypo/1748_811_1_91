@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
-import com.example.demo.entity.Category;
+import com.example.demo.model.Category;
 
 public interface CategoryService {
 
@@ -9,7 +9,7 @@ public interface CategoryService {
 
     List<Category> getAllCategory();
 
-    StudentEntity getCategoryById(Long id);
+    Category getCategoryById(Long id);
 
     
 }
