@@ -29,15 +29,4 @@ public class CategoryController {
     public StudentEntity getStudentById(@PathVariable Long id) {
         return service.getStudentById(id);
     }
-
-    @DeleteMapping("/{id}")
-    public String deleteStudent(@PathVariable Long id) {
-        StudentEntity student = service.getStudentById(id);
-        if (student != null) {
-            service.deleteStudentById(id);
-            return "Student deleted successfully";
-        } else {
-            return "Student not found";
-        }
-    }
 }
