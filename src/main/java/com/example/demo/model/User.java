@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
 @Entity
 public class User{
     @Id
@@ -11,7 +11,7 @@ public class User{
     private String email;
     private String password;
     private String role;
-    private LocalDateTime createdAt;
+    //private LocalDateTime createdAt;
 
 
     protected void onCreate(){
@@ -70,10 +70,10 @@ public class User{
     {
         return role;
     }
-    public LocalDateTime getCreatedAt()
-    {
-        return createdAt;
-    }
+    // public LocalDateTime getCreatedAt()
+    // {
+    //     return createdAt;
+    // }
 
 
 }
