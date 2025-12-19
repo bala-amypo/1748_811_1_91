@@ -1,9 +1,10 @@
 package com.example.demo.util;
 
 import com.example.demo.model.*;
-
+import org.springframework.stereotype.Component;
 import java.util.List;
 
+@Component
 public class TicketCategorizationEngine {
 
     public void categorize(
@@ -49,3 +50,5 @@ public class TicketCategorizationEngine {
         logs.add(log);
     }
 }
+
+@Component
