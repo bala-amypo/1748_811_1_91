@@ -1,32 +1,33 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import com.example.demo.model.Category;
 import com.example.demo.service.CategoryService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/api/categories")
 public class CategoryController {
 
-    @Autowired
-    private CategoryService cat;
+    private final CategoryService categoryService;
 
-    @PostMapping("/addCategory")
-    public Category addCategory(@RequestBody Category category) {
-        return cat.addCategory(category);
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
-    @GetMapping("/allCategory")
-    public List<Category> getAllCategory() {
-        return cat.getAllCategory();
+    @PostMapping
+    public Category createCategory(@RequestBody Category category) {
+        return categoryService.createCategory(category);
+    }
+
+    @GetMapping
+    public List<Category> getAllCategories() {
+        return categoryService.getAllCategories();
     }
 
     @GetMapping("/{id}")
-    public Category getCategoryById(@PathVariable Long id) {
-        return cat.getCategoryById(id);
+    public Category getCategory(@PathVariable Long id) {
+        return categoryService.getCategory(id);
     }
 }

@@ -2,36 +2,32 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Ticket;
 import com.example.demo.service.TicketService;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/tickets")
-@Tag(name = "Ticket Management")
 public class TicketController {
 
     private final TicketService ticketService;
 
-    // Constructor Injection
     public TicketController(TicketService ticketService) {
         this.ticketService = ticketService;
     }
 
     @PostMapping
-    public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket) {
-        return ResponseEntity.ok(ticketService.createTicket(ticket));
+    public Ticket createTicket(@RequestBody Ticket ticket) {
+        return ticketService.createTicket(ticket);
     }
 
     @GetMapping
-    public ResponseEntity<List<Ticket>> getAllTickets() {
-        return ResponseEntity.ok(ticketService.getAllTickets());
+    public List<Ticket> getAllTickets() {
+        return ticketService.getAllTickets();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Ticket> getTicket(@PathVariable Long id) {
-        return ResponseEntity.ok(ticketService.getTicket(id));
+    public Ticket getTicket(@PathVariable Long id) {
+        return ticketService.getTicket(id);
     }
 }
