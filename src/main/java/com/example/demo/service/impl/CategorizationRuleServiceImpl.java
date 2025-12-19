@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CategorizationRuleServiceImpl implements CategorizationRuleService {
+public class CategorizationRuleServiceImpl
+        implements CategorizationRuleService {
 
     private final CategorizationRuleRepository ruleRepository;
     private final CategoryRepository categoryRepository;
 
-    // REQUIRED constructor order
     public CategorizationRuleServiceImpl(
             CategorizationRuleRepository ruleRepository,
             CategoryRepository categoryRepository) {
@@ -25,7 +25,8 @@ public class CategorizationRuleServiceImpl implements CategorizationRuleService 
     }
 
     @Override
-    public CategorizationRule createRule(Long categoryId, CategorizationRule rule) {
+    public CategorizationRule createRule(Long categoryId,
+                                         CategorizationRule rule) {
 
         Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() ->
@@ -37,13 +38,11 @@ public class CategorizationRuleServiceImpl implements CategorizationRuleService 
 
     @Override
     public List<CategorizationRule> getRulesByCategory(Long categoryId) {
-        Category category = categoryRepository.findById(categoryId)
+        categoryRepository.findById(categoryId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Category not found"));
 
-        return category.getId() != null
-                ? ruleRepository.findAll()
-                : List.of();
+        return ruleRepository.findByCategoryId(categoryId);
     }
 
     @Override

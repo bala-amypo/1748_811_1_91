@@ -13,8 +13,8 @@ public class UrgencyPolicyServiceImpl implements UrgencyPolicyService {
 
     private final UrgencyPolicyRepository policyRepository;
 
-    // REQUIRED constructor order
-    public UrgencyPolicyServiceImpl(UrgencyPolicyRepository policyRepository) {
+    public UrgencyPolicyServiceImpl(
+            UrgencyPolicyRepository policyRepository) {
         this.policyRepository = policyRepository;
     }
 

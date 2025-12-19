@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CategorizationEngineServiceImpl implements CategorizationEngineService {
+public class CategorizationEngineServiceImpl
+        implements CategorizationEngineService {
 
     private final TicketRepository ticketRepository;
     private final CategoryRepository categoryRepository;
@@ -20,7 +21,6 @@ public class CategorizationEngineServiceImpl implements CategorizationEngineServ
     private final CategorizationLogRepository logRepository;
     private final TicketCategorizationEngine engine;
 
-    // REQUIRED constructor order (CRITICAL)
     public CategorizationEngineServiceImpl(
             TicketRepository ticketRepository,
             CategoryRepository categoryRepository,
