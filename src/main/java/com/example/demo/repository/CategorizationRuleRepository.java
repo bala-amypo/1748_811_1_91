@@ -10,6 +10,6 @@ public interface CategorizationRuleRepository
 
     List<CategorizationRule> findByCategoryId(Long categoryId);
 
-    // REQUIRED keyword search
+    
     List<CategorizationRule> findByKeywordContainingIgnoreCase(String keyword);
 }
