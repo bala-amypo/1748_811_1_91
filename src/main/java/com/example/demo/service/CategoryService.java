@@ -1,15 +1,14 @@
 package com.example.demo.service;
 
-import java.util.List;
 import com.example.demo.model.Category;
+
+import java.util.List;
 
 public interface CategoryService {
 
-    Category addCategory(Category category);
+    Category createCategory(Category category);
 
-    List<Category> getAllCategory();
+    Category getCategory(Long id);
 
-    Category getCategoryById(Long id);
-
-    
+    List<Category> getAllCategories();
 }
