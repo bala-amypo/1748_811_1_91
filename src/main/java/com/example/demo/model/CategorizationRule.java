@@ -11,15 +11,15 @@ public class CategorizationRule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @Column(nullable = false)
     private String keyword;
 
     @Column(nullable = false)
-    private String matchType; // EXACT / CONTAINS / REGEX
+    private String matchType;
 
     @Column(nullable = false)
     private Integer priority;
@@ -27,39 +27,31 @@ public class CategorizationRule {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-    }
-
     public CategorizationRule() {}
 
-    // Getters & Setters
-    public Long getId() { return id; }
-
-    public void setId(Long id) { this.id = id; }
-
-    public Category getCategory() { return category; }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public String getKeyword() { return keyword; }
-
-    public void setKeyword(String keyword) { this.keyword = keyword; }
-
-    public String getMatchType() { return matchType; }
-
-    public void setMatchType(String matchType) {
+    public CategorizationRule(String keyword, String matchType) {
+        this.keyword = keyword;
         this.matchType = matchType;
     }
 
-    public Integer getPriority() { return priority; }
-
-    public void setPriority(Integer priority) {
-        this.priority = priority;
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        if (this.priority == null) {
+            this.priority = 1;
+        }
     }
 
+    public Long getId() { return id; }
+    public Category getCategory() { return category; }
+    public String getKeyword() { return keyword; }
+    public String getMatchType() { return matchType; }
+    public Integer getPriority() { return priority; }
     public LocalDateTime getCreatedAt() { return createdAt; }
+
+    public void setId(Long id) { this.id = id; }
+    public void setCategory(Category category) { this.category = category; }
+    public void setKeyword(String keyword) { this.keyword = keyword; }
+    public void setMatchType(String matchType) { this.matchType = matchType; }
+    public void setPriority(Integer priority) { this.priority = priority; }
 }

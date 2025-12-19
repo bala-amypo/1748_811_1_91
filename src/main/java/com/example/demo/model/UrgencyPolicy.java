@@ -11,7 +11,6 @@ public class UrgencyPolicy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String policyName;
 
     @Column(nullable = false)
@@ -23,33 +22,26 @@ public class UrgencyPolicy {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    public UrgencyPolicy() {}
+
+    public UrgencyPolicy(String keyword, String urgencyOverride) {
+        this.keyword = keyword;
+        this.urgencyOverride = urgencyOverride;
+    }
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
     }
 
-    public UrgencyPolicy() {}
-
-    // Getters & Setters
     public Long getId() { return id; }
+    public String getPolicyName() { return policyName; }
+    public String getKeyword() { return keyword; }
+    public String getUrgencyOverride() { return urgencyOverride; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
 
     public void setId(Long id) { this.id = id; }
-
-    public String getPolicyName() { return policyName; }
-
-    public void setPolicyName(String policyName) {
-        this.policyName = policyName;
-    }
-
-    public String getKeyword() { return keyword; }
-
+    public void setPolicyName(String policyName) { this.policyName = policyName; }
     public void setKeyword(String keyword) { this.keyword = keyword; }
-
-    public String getUrgencyOverride() { return urgencyOverride; }
-
-    public void setUrgencyOverride(String urgencyOverride) {
-        this.urgencyOverride = urgencyOverride;
-    }
-
-    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setUrgencyOverride(String urgencyOverride) { this.urgencyOverride = urgencyOverride; }
 }
