@@ -5,8 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface CategorizationRuleRepository extends JpaRepository<CategorizationRule, Long> {
+public interface CategorizationRuleRepository
+        extends JpaRepository<CategorizationRule, Long> {
 
-    // REQUIRED by automated tests
+    List<CategorizationRule> findByCategoryId(Long categoryId);
+
+    // REQUIRED keyword search
     List<CategorizationRule> findByKeywordContainingIgnoreCase(String keyword);
 }
