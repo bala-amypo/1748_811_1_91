@@ -29,7 +29,7 @@ public class User {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    // JPA lifecycle hook
+   
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
