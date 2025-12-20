@@ -1,18 +1,18 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.CategorizationLog;
-import com.example.demo.service.CategorizationLogService;
+import com.example.demo.service.CategorizationEngineService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/logs")
-public class CategorizationLogController {
+public class CategorizationEngineController {
 
-    private final CategorizationLogService service;
+    private final CategorizationEningeService service;
 
-    public CategorizationLogController(CategorizationLogService service) {
+    public CategorizationEngineController(CategorizationEningeService service) {
         this.service = service;
     }
 
