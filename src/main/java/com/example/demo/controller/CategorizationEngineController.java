@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.CategorizationLog;
-import com.example.demo.repository.CategorizationLogRepository;
+import com.example.demo.service.CategorizationLogService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,19 +10,24 @@ import java.util.List;
 @RequestMapping("/api/logs")
 public class CategorizationLogController {
 
-    private final CategorizationLogRepository repo;
+    private final CategorizationLogService service;
 
-    public CategorizationLogController(CategorizationLogRepository repo) {
-        this.repo = repo;
+    public CategorizationLogController(CategorizationLogService service) {
+        this.service = service;
     }
 
     @PostMapping
     public CategorizationLog create(@RequestBody CategorizationLog log) {
-        return repo.save(log);
+        return service.create(log);
     }
 
     @GetMapping
     public List<CategorizationLog> getAll() {
-        return repo.findAll();
+        return service.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public CategorizationLog getById(@PathVariable Long id) {
+        return service.getById(id);
     }
 }
