@@ -10,9 +10,9 @@ import java.util.List;
 @RequestMapping("/api/logs")
 public class CategorizationEngineController {
 
-    private final CategorizationEningeService service;
+    private final CategorizationEngineService service;
 
-    public CategorizationEngineController(CategorizationEningeService service) {
+    public CategorizationEngineController(CategorizationEngineService service) {
         this.service = service;
     }
 
