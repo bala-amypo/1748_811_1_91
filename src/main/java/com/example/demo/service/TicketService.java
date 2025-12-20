@@ -4,6 +4,10 @@ import com.example.demo.model.Ticket;
 import java.util.List;
 
 public interface TicketService {
+
     Ticket create(Ticket ticket);
+
     List<Ticket> getAll();
+
+    Ticket getById(Long id);
 }
