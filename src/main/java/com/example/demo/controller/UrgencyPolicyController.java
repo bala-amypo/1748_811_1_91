@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.UrgencyPolicy;
-import com.example.demo.service.UrgencyPolicyService;
+import com.example.demo.repository.UrgencyPolicyRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,24 +10,19 @@ import java.util.List;
 @RequestMapping("/api/policies")
 public class UrgencyPolicyController {
 
-    private final UrgencyPolicyService policyService;
+    private final UrgencyPolicyRepository repo;
 
-    public UrgencyPolicyController(UrgencyPolicyService policyService) {
-        this.policyService = policyService;
+    public UrgencyPolicyController(UrgencyPolicyRepository repo) {
+        this.repo = repo;
     }
 
     @PostMapping
-    public UrgencyPolicy createPolicy(@RequestBody UrgencyPolicy policy) {
-        return policyService.createPolicy(policy);
+    public UrgencyPolicy create(@RequestBody UrgencyPolicy policy) {
+        return repo.save(policy);
     }
 
     @GetMapping
-    public List<UrgencyPolicy> getAllPolicies() {
-        return policyService.getAllPolicies();
-    }
-
-    @GetMapping("/{id}")
-    public UrgencyPolicy getPolicy(@PathVariable Long id) {
-        return policyService.getPolicy(id);
+    public List<UrgencyPolicy> getAll() {
+        return repo.findAll();
     }
 }

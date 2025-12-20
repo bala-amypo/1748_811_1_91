@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.CategorizationRule;
-import com.example.demo.service.CategorizationRuleService;
+import com.example.demo.repository.CategorizationRuleRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,27 +10,19 @@ import java.util.List;
 @RequestMapping("/api/rules")
 public class CategorizationRuleController {
 
-    private final CategorizationRuleService ruleService;
+    private final CategorizationRuleRepository repo;
 
-    public CategorizationRuleController(CategorizationRuleService ruleService) {
-        this.ruleService = ruleService;
+    public CategorizationRuleController(CategorizationRuleRepository repo) {
+        this.repo = repo;
     }
 
-    @PostMapping("/{categoryId}")
-    public CategorizationRule createRule(
-            @PathVariable Long categoryId,
-            @RequestBody CategorizationRule rule) {
-        return ruleService.createRule(categoryId, rule);
+    @PostMapping
+    public CategorizationRule create(@RequestBody CategorizationRule rule) {
+        return repo.save(rule);
     }
 
-    @GetMapping("/category/{categoryId}")
-    public List<CategorizationRule> getRulesByCategory(
-            @PathVariable Long categoryId) {
-        return ruleService.getRulesByCategory(categoryId);
-    }
-
-    @GetMapping("/{id}")
-    public CategorizationRule getRule(@PathVariable Long id) {
-        return ruleService.getRule(id);
+    @GetMapping
+    public List<CategorizationRule> getAll() {
+        return repo.findAll();
     }
 }

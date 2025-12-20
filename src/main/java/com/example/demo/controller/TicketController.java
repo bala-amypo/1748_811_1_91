@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Ticket;
-import com.example.demo.service.TicketService;
+import com.example.demo.repository.TicketRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,24 +10,19 @@ import java.util.List;
 @RequestMapping("/api/tickets")
 public class TicketController {
 
-    private final TicketService ticketService;
+    private final TicketRepository repo;
 
-    public TicketController(TicketService ticketService) {
-        this.ticketService = ticketService;
+    public TicketController(TicketRepository repo) {
+        this.repo = repo;
     }
 
     @PostMapping
-    public Ticket createTicket(@RequestBody Ticket ticket) {
-        return ticketService.createTicket(ticket);
+    public Ticket create(@RequestBody Ticket ticket) {
+        return repo.save(ticket);
     }
 
     @GetMapping
-    public List<Ticket> getAllTickets() {
-        return ticketService.getAllTickets();
-    }
-
-    @GetMapping("/{id}")
-    public Ticket getTicket(@PathVariable Long id) {
-        return ticketService.getTicket(id);
+    public List<Ticket> getAll() {
+        return repo.findAll();
     }
 }
