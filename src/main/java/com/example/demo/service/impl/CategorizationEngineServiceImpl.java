@@ -2,17 +2,17 @@ package com.example.demo.service.impl;
 
 import com.example.demo.model.CategorizationLog;
 import com.example.demo.repository.CategorizationLogRepository;
-import com.example.demo.service.CategorizationLogService;
+import com.example.demo.service.CategorizationEngineService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CategorizationLogServiceImpl implements CategorizationLogService {
+public class CategorizationEngineServiceImpl implements CategorizationEngineService {
 
     private final CategorizationLogRepository repo;
 
-    public CategorizationLogServiceImpl(CategorizationLogRepository repo) {
+    public CategorizationEngineServiceImpl(CategorizationLogRepository repo) {
         this.repo = repo;
     }
 
