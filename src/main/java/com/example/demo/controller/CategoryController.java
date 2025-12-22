@@ -10,24 +10,24 @@ import java.util.List;
 @RequestMapping("/api/categories")
 public class CategoryController {
 
-    private final CategoryService service;
+    private final CategoryService categoryService;
 
-    public CategoryController(CategoryService service) {
-        this.service = service;
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
     @PostMapping
-    public Category create(@RequestBody Category category) {
-        return service.create(category);
+    public Category createCategory(@RequestBody Category category) {
+        return categoryService.createCategory(category);
     }
 
     @GetMapping
-    public List<Category> getAll() {
-        return service.getAll();
+    public List<Category> getAllCategories() {
+        return categoryService.getAllCategories();
     }
 
     @GetMapping("/{id}")
-    public Category getById(@PathVariable Long id) {
-        return service.getById(id);
+    public Category getCategory(@PathVariable Long id) {
+        return categoryService.getCategory(id);
     }
 }

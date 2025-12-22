@@ -10,24 +10,27 @@ import java.util.List;
 @RequestMapping("/api/rules")
 public class CategorizationRuleController {
 
-    private final CategorizationRuleService service;
+    private final CategorizationRuleService ruleService;
 
-    public CategorizationRuleController(CategorizationRuleService service) {
-        this.service = service;
+    public CategorizationRuleController(CategorizationRuleService ruleService) {
+        this.ruleService = ruleService;
     }
 
-    @PostMapping
-    public CategorizationRule create(@RequestBody CategorizationRule rule) {
-        return service.create(rule);
+    @PostMapping("/{categoryId}")
+    public CategorizationRule createRule(
+            @PathVariable Long categoryId,
+            @RequestBody CategorizationRule rule) {
+
+        return ruleService.createRule(categoryId, rule);
     }
 
-    @GetMapping
-    public List<CategorizationRule> getAll() {
-        return service.getAll();
+    @GetMapping("/category/{categoryId}")
+    public List<CategorizationRule> getRulesByCategory(@PathVariable Long categoryId) {
+        return ruleService.getRulesByCategory(categoryId);
     }
 
     @GetMapping("/{id}")
-    public CategorizationRule getById(@PathVariable Long id) {
-        return service.getById(id);
+    public CategorizationRule getRule(@PathVariable Long id) {
+        return ruleService.getRule(id);
     }
 }
