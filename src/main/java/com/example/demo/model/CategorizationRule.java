@@ -14,10 +14,10 @@ public class CategorizationRule {
     private String matchType;
     private Integer priority;
 
-    // Default constructor
+    
     public CategorizationRule() {}
 
-    // Parameterized constructor
+    
     public CategorizationRule(Long id, String keyword, String matchType, Integer priority) {
         this.id = id;
         this.keyword = keyword;

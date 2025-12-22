@@ -15,10 +15,10 @@ public class Ticket {
     private String location;
     private String createdBy;
 
-    // Default constructor
+   
     public Ticket() {}
 
-    // Parameterized constructor
+    
     public Ticket(Long id, String title, String description, String location, String createdBy) {
         this.id = id;
         this.title = title;

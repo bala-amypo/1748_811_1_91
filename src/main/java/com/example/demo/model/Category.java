@@ -13,10 +13,10 @@ public class Category {
     private String categoryName;
     private String description;
 
-    // Default constructor
+    
     public Category() {}
 
-    // Parameterized constructor
+    
     public Category(Long id, String categoryName, String description) {
         this.id = id;
         this.categoryName = categoryName;

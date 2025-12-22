@@ -14,10 +14,10 @@ public class UrgencyPolicy {
     private String keyword;
     private String urgencyLevel;
 
-    // Default constructor
+    
     public UrgencyPolicy() {}
 
-    // Parameterized constructor
+    
     public UrgencyPolicy(Long id, String policyName, String keyword, String urgencyLevel) {
         this.id = id;
         this.policyName = policyName;

@@ -14,10 +14,10 @@ public class CategorizationLog {
     private String assignedCategory;
     private String assignedUrgency;
 
-    // Default constructor
+    
     public CategorizationLog() {}
 
-    // Parameterized constructor
+    
     public CategorizationLog(Long id, String matchedKeyword, String assignedCategory, String assignedUrgency) {
         this.id = id;
         this.matchedKeyword = matchedKeyword;

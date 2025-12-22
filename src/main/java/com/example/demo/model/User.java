@@ -17,10 +17,10 @@ public class User {
 
     private String password;
 
-    // Default constructor
+   
     public User() {}
 
-    // Parameterized constructor
+    
     public User(Long id, String fullName, String email, String password) {
         this.id = id;
         this.fullName = fullName;
