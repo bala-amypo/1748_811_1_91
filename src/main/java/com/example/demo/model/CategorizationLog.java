@@ -10,8 +10,12 @@ public class CategorizationLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Transient
     private Ticket ticket;
+
+    @Transient
     private CategorizationRule appliedRule;
+
     private String matchedKeyword;
     private String assignedCategory;
     private String assignedUrgency;
@@ -26,7 +30,7 @@ public class CategorizationLog {
 
     @PrePersist
     void onCreate() {
-        loggedAt = LocalDateTime.now();
+        this.loggedAt = LocalDateTime.now();
     }
 
     public Long getId() { return id; }
@@ -36,16 +40,24 @@ public class CategorizationLog {
     public void setTicket(Ticket ticket) { this.ticket = ticket; }
 
     public CategorizationRule getAppliedRule() { return appliedRule; }
-    public void setAppliedRule(CategorizationRule appliedRule) { this.appliedRule = appliedRule; }
+    public void setAppliedRule(CategorizationRule appliedRule) {
+        this.appliedRule = appliedRule;
+    }
 
     public String getMatchedKeyword() { return matchedKeyword; }
-    public void setMatchedKeyword(String matchedKeyword) { this.matchedKeyword = matchedKeyword; }
+    public void setMatchedKeyword(String matchedKeyword) {
+        this.matchedKeyword = matchedKeyword;
+    }
 
     public String getAssignedCategory() { return assignedCategory; }
-    public void setAssignedCategory(String assignedCategory) { this.assignedCategory = assignedCategory; }
+    public void setAssignedCategory(String assignedCategory) {
+        this.assignedCategory = assignedCategory;
+    }
 
     public String getAssignedUrgency() { return assignedUrgency; }
-    public void setAssignedUrgency(String assignedUrgency) { this.assignedUrgency = assignedUrgency; }
+    public void setAssignedUrgency(String assignedUrgency) {
+        this.assignedUrgency = assignedUrgency;
+    }
 
     public LocalDateTime getLoggedAt() { return loggedAt; }
 }

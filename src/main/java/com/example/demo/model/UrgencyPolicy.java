@@ -26,7 +26,7 @@ public class UrgencyPolicy {
 
     @PrePersist
     void onCreate() {
-        createdAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
 
     public Long getId() { return id; }
@@ -39,7 +39,9 @@ public class UrgencyPolicy {
     public void setKeyword(String keyword) { this.keyword = keyword; }
 
     public String getUrgencyOverride() { return urgencyOverride; }
-    public void setUrgencyOverride(String urgencyOverride) { this.urgencyOverride = urgencyOverride; }
+    public void setUrgencyOverride(String urgencyOverride) {
+        this.urgencyOverride = urgencyOverride;
+    }
 
     public LocalDateTime getCreatedAt() { return createdAt; }
 }

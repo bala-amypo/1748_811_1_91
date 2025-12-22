@@ -10,7 +10,9 @@ public class CategorizationRule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Transient
     private Category category;
+
     private String keyword;
     private String matchType;
     private Integer priority;
@@ -18,7 +20,8 @@ public class CategorizationRule {
 
     public CategorizationRule() {}
 
-    public CategorizationRule(Long id, Category category, String keyword, String matchType, Integer priority) {
+    public CategorizationRule(Long id, Category category, String keyword,
+                              String matchType, Integer priority) {
         this.id = id;
         this.category = category;
         this.keyword = keyword;
@@ -28,7 +31,7 @@ public class CategorizationRule {
 
     @PrePersist
     void onCreate() {
-        createdAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
 
     public Long getId() { return id; }
