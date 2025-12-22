@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tickets")
@@ -16,25 +15,16 @@ public class Ticket {
     private String location;
     private String createdBy;
 
-    @Transient
-    private Category assignedCategory;
-
-    private String urgencyLevel;
-    private LocalDateTime createdAt;
-
+    // Default constructor
     public Ticket() {}
 
+    // Parameterized constructor
     public Ticket(Long id, String title, String description, String location, String createdBy) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.location = location;
         this.createdBy = createdBy;
-    }
-
-    @PrePersist
-    void onCreate() {
-        this.createdAt = LocalDateTime.now();
     }
 
     public Long getId() { return id; }
@@ -51,12 +41,4 @@ public class Ticket {
 
     public String getCreatedBy() { return createdBy; }
     public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
-
-    public Category getAssignedCategory() { return assignedCategory; }
-    public void setAssignedCategory(Category assignedCategory) { this.assignedCategory = assignedCategory; }
-
-    public String getUrgencyLevel() { return urgencyLevel; }
-    public void setUrgencyLevel(String urgencyLevel) { this.urgencyLevel = urgencyLevel; }
-
-    public LocalDateTime getCreatedAt() { return createdAt; }
 }

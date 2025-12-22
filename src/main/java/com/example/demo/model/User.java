@@ -1,13 +1,9 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
-@Table(
-    name = "users",
-    uniqueConstraints = @UniqueConstraint(columnNames = "email")
-)
+@Table(name = "users")
 public class User {
 
     @Id
@@ -15,24 +11,21 @@ public class User {
     private Long id;
 
     private String fullName;
-    private String email;
-    private String password;
-    private String role = "USER";
-    private LocalDateTime createdAt;
 
+    @Column(unique = true)
+    private String email;
+
+    private String password;
+
+    // Default constructor
     public User() {}
 
-    public User(Long id, String fullName, String email, String password, String role) {
+    // Parameterized constructor
+    public User(Long id, String fullName, String email, String password) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.password = password;
-        this.role = role;
-    }
-
-    @PrePersist
-    void onCreate() {
-        this.createdAt = LocalDateTime.now();
     }
 
     public Long getId() { return id; }
@@ -46,9 +39,4 @@ public class User {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
-
-    public String getRole() { return role; }
-    public void setRole(String role) { this.role = role; }
-
-    public LocalDateTime getCreatedAt() { return createdAt; }
 }

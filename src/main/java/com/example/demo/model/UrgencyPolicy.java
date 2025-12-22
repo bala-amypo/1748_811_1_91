@@ -1,9 +1,9 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "urgency_policies")
 public class UrgencyPolicy {
 
     @Id
@@ -12,21 +12,17 @@ public class UrgencyPolicy {
 
     private String policyName;
     private String keyword;
-    private String urgencyOverride;
-    private LocalDateTime createdAt;
+    private String urgencyLevel;
 
+    // Default constructor
     public UrgencyPolicy() {}
 
-    public UrgencyPolicy(Long id, String policyName, String keyword, String urgencyOverride) {
+    // Parameterized constructor
+    public UrgencyPolicy(Long id, String policyName, String keyword, String urgencyLevel) {
         this.id = id;
         this.policyName = policyName;
         this.keyword = keyword;
-        this.urgencyOverride = urgencyOverride;
-    }
-
-    @PrePersist
-    void onCreate() {
-        this.createdAt = LocalDateTime.now();
+        this.urgencyLevel = urgencyLevel;
     }
 
     public Long getId() { return id; }
@@ -38,10 +34,6 @@ public class UrgencyPolicy {
     public String getKeyword() { return keyword; }
     public void setKeyword(String keyword) { this.keyword = keyword; }
 
-    public String getUrgencyOverride() { return urgencyOverride; }
-    public void setUrgencyOverride(String urgencyOverride) {
-        this.urgencyOverride = urgencyOverride;
-    }
-
-    public LocalDateTime getCreatedAt() { return createdAt; }
+    public String getUrgencyLevel() { return urgencyLevel; }
+    public void setUrgencyLevel(String urgencyLevel) { this.urgencyLevel = urgencyLevel; }
 }
