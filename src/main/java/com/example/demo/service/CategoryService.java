@@ -4,10 +4,7 @@ import com.example.demo.model.Category;
 import java.util.List;
 
 public interface CategoryService {
-
-    Category createCategory(Category category);
-
-    Category getCategory(Long id);
-
-    List<Category> getAllCategories();
+    Category save(Category category);
+    List<Category> getAll();
+    Category getById(Long id);
 }
