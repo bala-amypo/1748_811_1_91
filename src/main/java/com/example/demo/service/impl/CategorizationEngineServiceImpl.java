@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CategorizationLogServiceImpl implements CategorizationLogService {
+public class CategorizationEngineServiceImpl implements CategorizationLogService {
 
-    private final CategorizationLogRepository repo;
+    private final CategorizationEngineRepository repo;
 
-    public CategorizationLogServiceImpl(CategorizationLogRepository repo) {
+    public CategorizationEngineServiceImpl(CategorizationLogRepository repo) {
         this.repo = repo;
     }
 

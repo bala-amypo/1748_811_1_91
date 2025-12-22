@@ -10,24 +10,24 @@ import java.util.List;
 @RequestMapping("/api/policies")
 public class UrgencyPolicyController {
 
-    private final UrgencyPolicyService policyService;
+    private final UrgencyPolicyService service;
 
-    public UrgencyPolicyController(UrgencyPolicyService policyService) {
-        this.policyService = policyService;
+    public UrgencyPolicyController(UrgencyPolicyService service) {
+        this.service = service;
     }
 
     @PostMapping
-    public UrgencyPolicy createPolicy(@RequestBody UrgencyPolicy policy) {
-        return policyService.createPolicy(policy);
+    public UrgencyPolicy create(@RequestBody UrgencyPolicy policy) {
+        return service.save(policy);
     }
 
     @GetMapping
-    public List<UrgencyPolicy> getAllPolicies() {
-        return policyService.getAllPolicies();
+    public List<UrgencyPolicy> getAll() {
+        return service.getAll();
     }
 
     @GetMapping("/{id}")
-    public UrgencyPolicy getPolicy(@PathVariable Long id) {
-        return policyService.getPolicy(id);
+    public UrgencyPolicy getById(@PathVariable Long id) {
+        return service.getById(id);
     }
 }

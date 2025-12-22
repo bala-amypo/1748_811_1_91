@@ -1,34 +1,33 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.CategorizationLog;
-import com.example.demo.model.Ticket;
 import com.example.demo.service.CategorizationEngineService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/categorize")
+@RequestMapping("/api/logs")
 public class CategorizationEngineController {
 
-    private final CategorizationEngineService engineService;
+    private final CategorizationEngineService service;
 
-    public CategorizationEngineController(CategorizationEngineService engineService) {
-        this.engineService = engineService;
+    public CategorizationEngineController(CategorizationEngineService service) {
+        this.service = service;
     }
 
-    @PostMapping("/run/{ticketId}")
-    public Ticket categorizeTicket(@PathVariable Long ticketId) {
-        return engineService.categorizeTicket(ticketId);
+    @PostMapping
+    public CategorizationLog create(@RequestBody CategorizationLog log) {
+        return service.save(log);
     }
 
-    @GetMapping("/logs/{ticketId}")
-    public List<CategorizationLog> getLogsForTicket(@PathVariable Long ticketId) {
-        return engineService.getLogsForTicket(ticketId);
+    @GetMapping
+    public List<CategorizationLog> getAll() {
+        return service.getAll();
     }
 
-    @GetMapping("/log/{id}")
-    public CategorizationLog getLog(@PathVariable Long id) {
-        return engineService.getLog(id);
+    @GetMapping("/{id}")
+    public CategorizationLog getById(@PathVariable Long id) {
+        return service.getById(id);
     }
 }

@@ -10,24 +10,24 @@ import java.util.List;
 @RequestMapping("/api/tickets")
 public class TicketController {
 
-    private final TicketService ticketService;
+    private final TicketService service;
 
-    public TicketController(TicketService ticketService) {
-        this.ticketService = ticketService;
+    public TicketController(TicketService service) {
+        this.service = service;
     }
 
     @PostMapping
-    public Ticket createTicket(@RequestBody Ticket ticket) {
-        return ticketService.createTicket(ticket);
+    public Ticket create(@RequestBody Ticket ticket) {
+        return service.save(ticket);
     }
 
     @GetMapping
-    public List<Ticket> getAllTickets() {
-        return ticketService.getAllTickets();
+    public List<Ticket> getAll() {
+        return service.getAll();
     }
 
     @GetMapping("/{id}")
-    public Ticket getTicket(@PathVariable Long id) {
-        return ticketService.getTicket(id);
+    public Ticket getById(@PathVariable Long id) {
+        return service.getById(id);
     }
 }
