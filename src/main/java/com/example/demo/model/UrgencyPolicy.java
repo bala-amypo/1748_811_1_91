@@ -1,9 +1,9 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "urgency_policies")
 public class UrgencyPolicy {
 
     @Id
@@ -11,43 +11,35 @@ public class UrgencyPolicy {
     private Long id;
 
     private String policyName;
-
     private String keyword;
-
     private String urgencyOverride;
+    private LocalDateTime createdAt;
 
-    public UrgencyPolicy() {
-    }
+    public UrgencyPolicy() {}
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
+    public UrgencyPolicy(Long id, String policyName, String keyword, String urgencyOverride) {
         this.id = id;
-    }
-
-    public String getPolicyName() {
-        return policyName;
-    }
-
-    public void setPolicyName(String policyName) {
         this.policyName = policyName;
-    }
-
-    public String getKeyword() {
-        return keyword;
-    }
-
-    public void setKeyword(String keyword) {
         this.keyword = keyword;
-    }
-
-    public String getUrgencyOverride() {
-        return urgencyOverride;
-    }
-
-    public void setUrgencyOverride(String urgencyOverride) {
         this.urgencyOverride = urgencyOverride;
     }
+
+    @PrePersist
+    void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getPolicyName() { return policyName; }
+    public void setPolicyName(String policyName) { this.policyName = policyName; }
+
+    public String getKeyword() { return keyword; }
+    public void setKeyword(String keyword) { this.keyword = keyword; }
+
+    public String getUrgencyOverride() { return urgencyOverride; }
+    public void setUrgencyOverride(String urgencyOverride) { this.urgencyOverride = urgencyOverride; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
 }

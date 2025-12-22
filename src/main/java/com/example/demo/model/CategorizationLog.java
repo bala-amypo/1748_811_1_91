@@ -1,63 +1,51 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "categorization_logs")
 public class CategorizationLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long ticketId;
-
+    private Ticket ticket;
+    private CategorizationRule appliedRule;
     private String matchedKeyword;
-
     private String assignedCategory;
-
     private String assignedUrgency;
+    private LocalDateTime loggedAt;
 
-    public CategorizationLog() {
-    }
+    public CategorizationLog() {}
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
+    public CategorizationLog(Long id, Ticket ticket) {
         this.id = id;
+        this.ticket = ticket;
     }
 
-    public Long getTicketId() {
-        return ticketId;
+    @PrePersist
+    void onCreate() {
+        loggedAt = LocalDateTime.now();
     }
 
-    public void setTicketId(Long ticketId) {
-        this.ticketId = ticketId;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getMatchedKeyword() {
-        return matchedKeyword;
-    }
+    public Ticket getTicket() { return ticket; }
+    public void setTicket(Ticket ticket) { this.ticket = ticket; }
 
-    public void setMatchedKeyword(String matchedKeyword) {
-        this.matchedKeyword = matchedKeyword;
-    }
+    public CategorizationRule getAppliedRule() { return appliedRule; }
+    public void setAppliedRule(CategorizationRule appliedRule) { this.appliedRule = appliedRule; }
 
-    public String getAssignedCategory() {
-        return assignedCategory;
-    }
+    public String getMatchedKeyword() { return matchedKeyword; }
+    public void setMatchedKeyword(String matchedKeyword) { this.matchedKeyword = matchedKeyword; }
 
-    public void setAssignedCategory(String assignedCategory) {
-        this.assignedCategory = assignedCategory;
-    }
+    public String getAssignedCategory() { return assignedCategory; }
+    public void setAssignedCategory(String assignedCategory) { this.assignedCategory = assignedCategory; }
 
-    public String getAssignedUrgency() {
-        return assignedUrgency;
-    }
+    public String getAssignedUrgency() { return assignedUrgency; }
+    public void setAssignedUrgency(String assignedUrgency) { this.assignedUrgency = assignedUrgency; }
 
-    public void setAssignedUrgency(String assignedUrgency) {
-        this.assignedUrgency = assignedUrgency;
-    }
+    public LocalDateTime getLoggedAt() { return loggedAt; }
 }
