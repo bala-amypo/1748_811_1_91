@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.UrgencyPolicy;
 import com.example.demo.repository.UrgencyPolicyRepository;
 import com.example.demo.service.UrgencyPolicyService;
@@ -10,24 +11,27 @@ import java.util.List;
 @Service
 public class UrgencyPolicyServiceImpl implements UrgencyPolicyService {
 
-    private final UrgencyPolicyRepository repo;
+    private final UrgencyPolicyRepository policyRepository;
 
-    public UrgencyPolicyServiceImpl(UrgencyPolicyRepository repo) {
-        this.repo = repo;
+   
+    public UrgencyPolicyServiceImpl(UrgencyPolicyRepository policyRepository) {
+        this.policyRepository = policyRepository;
     }
 
     @Override
-    public UrgencyPolicy create(UrgencyPolicy policy) {
-        return repo.save(policy);
+    public UrgencyPolicy createPolicy(UrgencyPolicy policy) {
+        return policyRepository.save(policy);
     }
 
     @Override
-    public List<UrgencyPolicy> getAll() {
-        return repo.findAll();
+    public List<UrgencyPolicy> getAllPolicies() {
+        return policyRepository.findAll();
     }
 
     @Override
-    public UrgencyPolicy getById(Long id) {
-        return repo.findById(id).orElse(null);
+    public UrgencyPolicy getPolicy(Long id) {
+        return policyRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Policy not found"));
     }
 }

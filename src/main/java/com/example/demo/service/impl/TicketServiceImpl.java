@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Ticket;
 import com.example.demo.repository.TicketRepository;
 import com.example.demo.service.TicketService;
@@ -10,24 +11,27 @@ import java.util.List;
 @Service
 public class TicketServiceImpl implements TicketService {
 
-    private final TicketRepository repo;
+    private final TicketRepository ticketRepository;
 
-    public TicketServiceImpl(TicketRepository repo) {
-        this.repo = repo;
+    
+    public TicketServiceImpl(TicketRepository ticketRepository) {
+        this.ticketRepository = ticketRepository;
     }
 
     @Override
-    public Ticket create(Ticket ticket) {
-        return repo.save(ticket);
+    public Ticket createTicket(Ticket ticket) {
+        return ticketRepository.save(ticket);
     }
 
     @Override
-    public List<Ticket> getAll() {
-        return repo.findAll();
+    public Ticket getTicket(Long id) {
+        return ticketRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Ticket not found"));
     }
 
     @Override
-    public Ticket getById(Long id) {
-        return repo.findById(id).orElse(null);
+    public List<Ticket> getAllTickets() {
+        return ticketRepository.findAll();
     }
 }

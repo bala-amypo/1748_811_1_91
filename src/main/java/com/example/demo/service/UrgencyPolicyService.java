@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface UrgencyPolicyService {
 
-    UrgencyPolicy create(UrgencyPolicy policy);
+    UrgencyPolicy createPolicy(UrgencyPolicy policy);
 
-    List<UrgencyPolicy> getAll();
+    List<UrgencyPolicy> getAllPolicies();
 
-    UrgencyPolicy getById(Long id);
+    UrgencyPolicy getPolicy(Long id);
 }
