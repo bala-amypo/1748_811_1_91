@@ -16,7 +16,9 @@ public class Ticket {
     private String location;
     private String createdBy;
 
+    @Transient
     private Category assignedCategory;
+
     private String urgencyLevel;
     private LocalDateTime createdAt;
 
@@ -32,7 +34,7 @@ public class Ticket {
 
     @PrePersist
     void onCreate() {
-        createdAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
 
     public Long getId() { return id; }
