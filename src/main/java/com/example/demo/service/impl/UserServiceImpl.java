@@ -26,6 +26,6 @@ public class UserServiceImpl implements UserService {
     }
 
     public User getById(Long id) {
-        return repo.findById(id).orElse(() -> new ResourceNotFoundException("User not Found with id : " + id));
+        return repo.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not Found with id : " + id));
     }
 }
