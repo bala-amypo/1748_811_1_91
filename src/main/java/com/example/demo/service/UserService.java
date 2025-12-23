@@ -5,6 +5,7 @@ import java.util.List;
 
 public interface UserService {
     User save(User user);
+    User createRegister(User register)
     List<User> getAll();
     User getById(Long id);
 }
