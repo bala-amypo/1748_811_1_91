@@ -21,6 +21,11 @@ public class UserController {
         return service.save(user);
     }
 
+    @PostMapping
+    public User createRegister(@RequestBody User user) {
+        return service.save(user);
+    }
+
     @GetMapping
     public List<User> getAll() {
         return service.getAll();
