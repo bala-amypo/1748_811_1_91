@@ -20,6 +20,9 @@ public class UserServiceImpl implements UserService {
     public User save(User user) {
         return repo.save(user);
     }
+    public User createRegister(User register) {
+        return repo.save(register);
+    }
 
     public List<User> getAll() {
         return repo.findAll();
