@@ -1,8 +1,6 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "users" , uniqueConstraints = {@UniqueConstraint(columnNames = "email")})
@@ -12,14 +10,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name should be filled")
+    
     private String fullName;
 
-    @NotBlank(message = "Email is required")
+    
     @Column( nullable = false  , unique = true)
     private String email;
 
-    @NotBlank(message = "Password is required")
+  
     private String password;
 
    
