@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api")
 public class UserController {
 
     private final UserService service;
@@ -16,7 +16,7 @@ public class UserController {
         this.service = service;
     }
 
-    @PostMapping
+    @PostMapping("/login")
     public User create(@RequestBody User user) {
         return service.save(user);
     }
