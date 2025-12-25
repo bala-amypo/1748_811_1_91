@@ -1,38 +1,31 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.User;
-import com.example.demo.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import com.example.demo.dto.AuthResponse;
+import com.example.demo.model.User;
+import com.example.demo.service.UserService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/auth")
 public class AuthController {
 
-    private final UserService service;
+    private final UserService userService;
 
-    public AuthController(UserService service) {
-        this.service = service;
-    }
-
-    @PostMapping("/login")
-    public User create(@RequestBody User user) {
-        return service.save(user);
+    public AuthController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping("/register")
-    public User createRegister(@RequestBody User register) {
-        return service.createRegister(register);
+    public User register(@RequestBody User user) {
+        return userService.register(user);
     }
 
-    @GetMapping
-    public List<User> getAll() {
-        return service.getAll();
-    }
-
-    @GetMapping("/{id}")
-    public User getById(@PathVariable Long id) {
-        return service.getById(id);
+    @PostMapping("/login")
+    public AuthResponse login(@RequestBody User user) {
+        
+        User dbUser = userService.findByEmail(user.getEmail());
+        return new AuthResponse("dummy-token", dbUser.getId(),
+                dbUser.getEmail(), dbUser.getRole());
     }
 }
