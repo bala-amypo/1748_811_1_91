@@ -1,33 +1,34 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.UrgencyPolicy;
-import com.example.demo.service.UrgencyPolicyService;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
+import org.springframework.web.bind.annotation.*;
+
+import com.example.demo.model.UrgencyPolicy;
+import com.example.demo.service.UrgencyPolicyService;
+
 @RestController
-@RequestMapping("/api/policies")
+@RequestMapping("/urgency-policies")
 public class UrgencyPolicyController {
 
-    private final UrgencyPolicyService service;
+    private final UrgencyPolicyService policyService;
 
-    public UrgencyPolicyController(UrgencyPolicyService service) {
-        this.service = service;
+    public UrgencyPolicyController(UrgencyPolicyService policyService) {
+        this.policyService = policyService;
     }
 
     @PostMapping
-    public UrgencyPolicy create(@RequestBody UrgencyPolicy policy) {
-        return service.save(policy);
+    public UrgencyPolicy createPolicy(@RequestBody UrgencyPolicy policy) {
+        return policyService.createPolicy(policy);
     }
 
     @GetMapping
-    public List<UrgencyPolicy> getAll() {
-        return service.getAll();
+    public List<UrgencyPolicy> getAllPolicies() {
+        return policyService.getAllPolicies();
     }
 
     @GetMapping("/{id}")
-    public UrgencyPolicy getById(@PathVariable Long id) {
-        return service.getById(id);
+    public UrgencyPolicy getPolicyById(@PathVariable Long id) {
+        return policyService.getPolicy(id);
     }
 }

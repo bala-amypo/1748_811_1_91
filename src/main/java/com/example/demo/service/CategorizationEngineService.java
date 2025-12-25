@@ -1,10 +1,17 @@
 package com.example.demo.service;
 
-import com.example.demo.model.CategorizationLog;
 import java.util.List;
 
+import com.example.demo.model.CategorizationLog;
+import com.example.demo.model.Ticket;
+
 public interface CategorizationEngineService {
-    CategorizationLog save(CategorizationLog log);
-    List<CategorizationLog> getAll();
-    CategorizationLog getById(Long id);
+
+    Ticket categorizeTicket(Long ticketId);
+
+    List<CategorizationLog> getAllLogs();
+
+    CategorizationLog getLog(Long id);
+
+    //List<CategorizationLog> getLogsForTicket(Long ticketId);
 }

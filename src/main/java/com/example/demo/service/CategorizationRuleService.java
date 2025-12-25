@@ -1,10 +1,14 @@
 package com.example.demo.service;
 
-import com.example.demo.model.CategorizationRule;
 import java.util.List;
 
+import com.example.demo.model.CategorizationRule;
+
 public interface CategorizationRuleService {
-    CategorizationRule save(CategorizationRule rule);
-    List<CategorizationRule> getAll();
-    CategorizationRule getById(Long id);
+
+    CategorizationRule createRule(CategorizationRule rule);
+
+    List<CategorizationRule> getAllRules();
+
+    CategorizationRule getRule(Long id);
 }

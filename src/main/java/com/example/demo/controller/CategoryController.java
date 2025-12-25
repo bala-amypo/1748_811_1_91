@@ -1,33 +1,34 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Category;
-import com.example.demo.service.CategoryService;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
+import org.springframework.web.bind.annotation.*;
+
+import com.example.demo.model.Category;
+import com.example.demo.service.CategoryService;
+
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/categories")
 public class CategoryController {
 
-    private final CategoryService service;
+    private final CategoryService categoryService;
 
-    public CategoryController(CategoryService service) {
-        this.service = service;
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
     @PostMapping
-    public Category create(@RequestBody Category category) {
-        return service.save(category);
+    public Category createCategory(@RequestBody Category category) {
+        return categoryService.createCategory(category);
     }
 
     @GetMapping
-    public List<Category> getAll() {
-        return service.getAll();
+    public List<Category> getAllCategories() {
+        return categoryService.getAllCategories();
     }
 
     @GetMapping("/{id}")
-    public Category getById(@PathVariable Long id) {
-        return service.getById(id);
+    public Category getCategoryById(@PathVariable Long id) {
+        return categoryService.getCategory(id);
     }
 }
