@@ -67,7 +67,7 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- PasswordEncoder ONLY (no full security) -->
+        <!-- Password Encoder -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-crypto</artifactId>
@@ -87,26 +87,39 @@
             <version>2.3.0</version>
         </dependency>
 
-        <!-- Testing (JUnit 5) -->
+        <!-- ===================== -->
+        <!-- ===== TESTING ======= -->
+        <!-- ===================== -->
+
+        <!-- TestNG -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.9.0</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- Spring Security Core (needed for AuthenticationManager, UserDetailsService) -->
-    <dependency>
-        <groupId>org.springframework.security</groupId>
-        <artifactId>spring-security-core</artifactId>
-    </dependency>
+        <!-- Mockito -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>5.12.0</version>
+            <scope>test</scope>
+        </dependency>
 
-    <!-- TestNG (required by test case file) -->
-    <dependency>
-        <groupId>org.testng</groupId>
-        <artifactId>testng</artifactId>
-        <version>7.9.0</version>
-        <scope>test</scope>
-    </dependency>
+        <!-- Mockito + TestNG -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-testng</artifactId>
+            <version>0.5.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Spring Security Core (for AuthenticationManager, UserDetailsService) -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+        </dependency>
 
     </dependencies>
 
@@ -117,6 +130,18 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!-- Maven Surefire for TestNG -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
             </plugin>
 
         </plugins>

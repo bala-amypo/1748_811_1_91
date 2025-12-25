@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Maintenance Root Cause Suite">
+
+    <test name="All Tests">
+        <classes>
+            <class name="com.example.demo.MaintenanceRootCauseApplicationTests"/>
+        </classes>
+    </test>
+
+</suite>
