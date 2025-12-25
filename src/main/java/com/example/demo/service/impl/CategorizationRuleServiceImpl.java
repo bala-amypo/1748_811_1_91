@@ -1,30 +1,42 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.CategorizationRule;
-import com.example.demo.repository.CategorizationRuleRepository;
-import com.example.demo.service.CategorizationRuleService;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.model.CategorizationRule;
+import com.example.demo.repository.CategorizationRuleRepository;
+import com.example.demo.repository.CategoryRepository;
+import com.example.demo.service.CategorizationRuleService;
 
 @Service
 public class CategorizationRuleServiceImpl implements CategorizationRuleService {
 
-    private final CategorizationRuleRepository repo;
+    private final CategorizationRuleRepository ruleRepository;
+    private final CategoryRepository categoryRepository;
 
-    public CategorizationRuleServiceImpl(CategorizationRuleRepository repo) {
-        this.repo = repo;
+    public CategorizationRuleServiceImpl(
+            CategorizationRuleRepository ruleRepository,
+            CategoryRepository categoryRepository) {
+
+        this.ruleRepository = ruleRepository;
+        this.categoryRepository = categoryRepository;
     }
 
-    public CategorizationRule save(CategorizationRule rule) {
-        return repo.save(rule);
+    @Override
+    public CategorizationRule createRule(CategorizationRule rule) {
+        return ruleRepository.save(rule);
     }
 
-    public List<CategorizationRule> getAll() {
-        return repo.findAll();
+    @Override
+    public List<CategorizationRule> getAllRules() {
+        return ruleRepository.findAll();
     }
 
-    public CategorizationRule getById(Long id) {
-        return repo.findById(id).orElse(null);
+    @Override
+    public CategorizationRule getRule(Long id) {
+        return ruleRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Rule not found"));
     }
 }
