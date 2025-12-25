@@ -21,6 +21,7 @@ public class User {
     public User() {
     }
 
+    // getters and setters
     public Long getId() {
         return id;
     }
