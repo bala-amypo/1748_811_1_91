@@ -2,13 +2,8 @@ package com.example.demo.util;
 
 import java.util.List;
 
+import com.example.demo.model.*;
 import org.springframework.stereotype.Component;
-
-import com.example.demo.model.Category;
-import com.example.demo.model.CategorizationLog;
-import com.example.demo.model.CategorizationRule;
-import com.example.demo.model.Ticket;
-import com.example.demo.model.UrgencyPolicy;
 
 @Component
 public class TicketCategorizationEngine {
@@ -20,47 +15,41 @@ public class TicketCategorizationEngine {
             List<UrgencyPolicy> policies,
             List<CategorizationLog> logs) {
 
-        CategorizationRule matchedRule = null;
+        boolean categorized = false;
 
+        
         for (CategorizationRule rule : rules) {
-            if (rule.getKeyword() == null || rule.getMatchType() == null) {
-                continue;
-            }
+            if (ticket.getDescription() != null &&
+                ticket.getDescription().toLowerCase()
+                      .contains(rule.getKeyword().toLowerCase())) {
 
-            String description = ticket.getDescription() == null
-                    ? ""
-                    : ticket.getDescription().toLowerCase();
+                ticket.setAssignedCategory(rule.getCategory());
+                ticket.setUrgencyLevel(rule.getCategory().getDefaultUrgency());
+                categorized = true;
 
-            if ("CONTAINS".equalsIgnoreCase(rule.getMatchType())
-                    && description.contains(rule.getKeyword().toLowerCase())) {
-
-                if (matchedRule == null
-                        || rule.getPriority() > matchedRule.getPriority()) {
-                    matchedRule = rule;
-                }
+                CategorizationLog log = new CategorizationLog();
+                log.setTicket(ticket);
+                log.setAppliedRule(rule);
+                logs.add(log);
+                break;
             }
         }
 
-        if (matchedRule != null) {
-            ticket.setAssignedCategory(matchedRule.getCategory());
-            ticket.setUrgencyLevel(
-                    matchedRule.getCategory().getDefaultUrgency());
-
-            CategorizationLog log = new CategorizationLog();
-            log.setTicket(ticket);
-            log.setAppliedRule(matchedRule);
-            logs.add(log);
-        }
-
+        
         for (UrgencyPolicy policy : policies) {
-            if (policy.getKeyword() != null
-                    && ticket.getDescription() != null
-                    && ticket.getDescription()
-                             .toLowerCase()
-                             .contains(policy.getKeyword().toLowerCase())) {
+            if (ticket.getDescription() != null &&
+                ticket.getDescription().toLowerCase()
+                      .contains(policy.getKeyword().toLowerCase())) {
 
                 ticket.setUrgencyLevel(policy.getUrgencyOverride());
+                categorized = true;
+                break;
             }
+        }
+
+        
+        if (!categorized) {
+            ticket.setUrgencyLevel("LOW");
         }
     }
 }
