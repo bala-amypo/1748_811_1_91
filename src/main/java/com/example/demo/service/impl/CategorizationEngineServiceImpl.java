@@ -75,8 +75,9 @@ public class CategorizationEngineServiceImpl implements CategorizationEngineServ
                 .orElseThrow(() -> new ResourceNotFoundException("Log not found"));
     }
 
-    // @Override
-    // public List<CategorizationLog> getLogsForTicket(Long ticketId) {
-    //     return logRepository.findByTicket_Id(ticketId);
-    // }
+    @Override
+    public List<CategorizationLog> getLogsForTicket(Long ticketId) {
+        return logRepository.findByTicketId(ticketId);
+    }
+
 }
