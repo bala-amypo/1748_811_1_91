@@ -1,31 +1,14 @@
-package com.example.demo.controller;
+package com.example.demo.repository;
 
-import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
-import com.example.demo.dto.AuthResponse;
-import com.example.demo.model.User;
-import com.example.demo.service.UserService;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@RestController
-@RequestMapping("/auth")
-public class AuthController {
+import com.example.demo.model.CategorizationLog;
 
-    private final UserService userService;
+public interface CategorizationLogRepository
+        extends JpaRepository<CategorizationLog, Long> {
 
-    public AuthController(UserService userService) {
-        this.userService = userService;
-    }
-
-    @PostMapping("/register")
-    public User register(@RequestBody User user) {
-        return userService.register(user);
-    }
-
-    @PostMapping("/login")
-    public AuthResponse login(@RequestBody User user) {
-        
-        User dbUser = userService.findByEmail(user.getEmail());
-        return new AuthResponse("dummy-token", dbUser.getId(),
-                dbUser.getEmail(), dbUser.getRole());
-    }
+    List<CategorizationLog> findByTicket_Id(Long ticketId);
+    //List<CategorizationLog> getLogsForTicket(Long ticketId);
 }
