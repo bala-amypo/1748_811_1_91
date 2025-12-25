@@ -94,6 +94,20 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Spring Security Core (needed for AuthenticationManager, UserDetailsService) -->
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-core</artifactId>
+    </dependency>
+
+    <!-- TestNG (required by test case file) -->
+    <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>7.9.0</version>
+        <scope>test</scope>
+    </dependency>
+
     </dependencies>
 
     <build>
