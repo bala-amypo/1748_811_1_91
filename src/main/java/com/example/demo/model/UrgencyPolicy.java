@@ -1,6 +1,9 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "urgency_policies")
@@ -11,29 +14,63 @@ public class UrgencyPolicy {
     private Long id;
 
     private String policyName;
+
     private String keyword;
-    private String urgencyLevel;
 
-    
-    public UrgencyPolicy() {}
+    private String urgencyOverride;
 
-    
-    public UrgencyPolicy(Long id, String policyName, String keyword, String urgencyLevel) {
-        this.id = id;
-        this.policyName = policyName;
-        this.keyword = keyword;
-        this.urgencyLevel = urgencyLevel;
+    private LocalDateTime createdAt;
+
+    @ManyToMany(mappedBy = "urgencyPolicies")
+    private Set<Category> categories = new HashSet<>();
+
+    public UrgencyPolicy() {
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
+    }
 
-    public String getPolicyName() { return policyName; }
-    public void setPolicyName(String policyName) { this.policyName = policyName; }
+    // getters and setters
+    public Long getId() {
+        return id;
+    }
+ 
+    public void setId(Long id) {
+        this.id = id;
+    }
+ 
+    public String getPolicyName() {
+        return policyName;
+    }
+ 
+    public void setPolicyName(String policyName) {
+        this.policyName = policyName;
+    }
+ 
+    public String getKeyword() {
+        return keyword;
+    }
+ 
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+ 
+    public String getUrgencyOverride() {
+        return urgencyOverride;
+    }
+ 
+    public void setUrgencyOverride(String urgencyOverride) {
+        this.urgencyOverride = urgencyOverride;
+    }
+ 
+    public Set<Category> getCategories() {
+        return categories;
+    }
 
-    public String getKeyword() { return keyword; }
-    public void setKeyword(String keyword) { this.keyword = keyword; }
+     public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 
-    public String getUrgencyLevel() { return urgencyLevel; }
-    public void setUrgencyLevel(String urgencyLevel) { this.urgencyLevel = urgencyLevel; }
 }

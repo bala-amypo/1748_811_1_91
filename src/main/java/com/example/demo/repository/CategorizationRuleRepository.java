@@ -1,7 +1,13 @@
 package com.example.demo.repository;
 
-import com.example.demo.model.CategorizationRule;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CategorizationRuleRepository extends JpaRepository<CategorizationRule, Long> {
+import com.example.demo.model.CategorizationRule;
+
+public interface CategorizationRuleRepository
+        extends JpaRepository<CategorizationRule, Long> {
+
+    List<CategorizationRule> findByKeywordContainingIgnoreCase(String keyword);
 }
