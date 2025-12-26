@@ -23,24 +23,37 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User register(User user) {
+
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new IllegalArgumentException("Email already in use");
         }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        if (user.getRole() == null || user.getRole().isBlank()) {
-        user.setRole("USER");
+        
+        if (user.getRole() == null) {
+            user.setRole("USER");
         }
+
         return userRepository.save(user);
     }
 
     @Override
     public AuthResponse login(User user) {
+
         User dbUser = userRepository.findByEmail(user.getEmail())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
+      
+        if (!passwordEncoder.matches(user.getPassword(), dbUser.getPassword())) {
+            throw new IllegalArgumentException("Invalid credentials");
+        }
+
+        
+        String token = "dummy-token";
+
         return new AuthResponse(
-                "dummy-token",
+                token,
                 dbUser.getId(),
                 dbUser.getEmail(),
                 dbUser.getRole()

@@ -121,6 +121,13 @@
             <artifactId>spring-security-core</artifactId>
         </dependency>
 
+        <!-- Spring Security (REQUIRED for HttpSecurity, Filters, JWT, etc.) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+
     </dependencies>
 
     <build>
