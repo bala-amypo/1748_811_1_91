@@ -13,9 +13,6 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    // ===============================
-    // 404 - Resource Not Found
-    // ===============================
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Map<String, Object>> handleResourceNotFound(
             ResourceNotFoundException ex) {
@@ -26,9 +23,6 @@ public class GlobalExceptionHandler {
         );
     }
 
-    // ===============================
-    // 400 - Bad Request
-    // ===============================
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, Object>> handleIllegalArgument(
             IllegalArgumentException ex) {
@@ -39,9 +33,6 @@ public class GlobalExceptionHandler {
         );
     }
 
-    // ===============================
-    // 400 - Validation Errors
-    // ===============================
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, Object>> handleValidationErrors(
             MethodArgumentNotValidException ex) {
@@ -59,14 +50,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    // ===============================
-    // 500 - INTERNAL SERVER ERROR
-    // ===============================
+    
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGlobalException(
             Exception ex) {
 
-        // 🔥 VERY IMPORTANT: prints real cause in logs
         ex.printStackTrace();
 
         return buildErrorResponse(
@@ -75,9 +63,6 @@ public class GlobalExceptionHandler {
         );
     }
 
-    // ===============================
-    // Helper Methods
-    // ===============================
     private ResponseEntity<Map<String, Object>> buildErrorResponse(
             HttpStatus status, String message) {
 
