@@ -25,18 +25,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-            // Disable CSRF (JWT based)
+            
             .csrf(csrf -> csrf.disable())
 
-            // Stateless session
+          
             .sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
 
-            // Authorization rules
             .authorizeHttpRequests(auth -> auth
 
-                // PUBLIC
+             
                 .requestMatchers(
                         "/auth/**",
                         "/v3/api-docs/**",
@@ -44,24 +43,23 @@ public class SecurityConfig {
                         "/swagger-ui.html"
                 ).permitAll()
 
-                // USER + ADMIN
+             
                 .requestMatchers(
                         "/tickets/**",
                         "/categories/**"
                 ).hasAnyRole("USER", "ADMIN")
 
-                // ADMIN ONLY
+               
                 .requestMatchers(
                         "/urgency-policies/**",
                         "/rules/**",
                         "/engine/**"
                 ).hasRole("ADMIN")
 
-                // Everything else must be authenticated
+             
                 .anyRequest().authenticated()
             )
 
-            // JWT filter
             .addFilterBefore(
                     jwtAuthenticationFilter,
                     UsernamePasswordAuthenticationFilter.class
@@ -70,14 +68,12 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // Required for AuthenticationManager (login)
     @Bean
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
 
-    // Password encoder
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
